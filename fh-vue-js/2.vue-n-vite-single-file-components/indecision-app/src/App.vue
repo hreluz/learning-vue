@@ -1,28 +1,10 @@
 <template>
-  <section>
-    <h3>Counter: {{ counter }}</h3>
-    <h3>Square: {{ squareCounter }}</h3>
+  <h1>First App</h1>
 
-    <div>
-      <button @click="add(1)">+1</button>
-      <button @click="add(-1)">-1</button>
-    </div>
-  </section>
+  <hr />
+  <MyCounter />
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
-
-const counter = ref(2);
-const squareCounter = computed(() => counter.value * counter.value)
-
-const add = (n: number) => {
-  counter.value += n
-}
+import MyCounter from './components/MyCounter.vue'
 </script>
-
-<style scoped>
-h1 {
-  color: green
-}
-</style>
