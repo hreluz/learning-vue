@@ -2,7 +2,7 @@
   <h1>First App</h1>
 
   <hr />
-  <MyCounter />
+  <MyCounter :value="5" />
 </template>
 
 <script lang="ts" setup>
