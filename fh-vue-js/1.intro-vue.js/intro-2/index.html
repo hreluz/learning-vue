@@ -8,12 +8,13 @@
 <body>
     <div id="myApp">
        <h1>Batman Quotes</h1>
+       <button v-on:click="toggleAuthor">Toggle Author</button>
        <hr>
 
        <ul>
         <li v-for="({quote, author} , index) in quotes">
             <span> {{ index +1 }} - {{ quote }}</span>
-            <blockquote>{{ author }}</blockquote>
+            <blockquote v-show="showAuthor">{{ author }}</blockquote>
         </li>
        </ul>
     </div>
