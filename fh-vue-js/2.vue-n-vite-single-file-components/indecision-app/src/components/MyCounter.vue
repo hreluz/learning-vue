@@ -4,21 +4,14 @@
     <h3>Square: {{ squareCounter }}</h3>
 
     <div>
-      <button @click="add(1)">+1</button>
-      <button @click="add(-1)">-1</button>
+      <button class="btn" @click="add(1)">+1</button>
+      <button class="btn" @click="add(-1)">-1</button>
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
-
-// const props = defineProps({
-//   value: {
-//     type: Number,
-//     required: true
-//   }
-// })
 
 interface Props {
   value: number;
@@ -33,3 +26,9 @@ const add = (n: number) => {
   counter.value += n
 }
 </script>
+
+<style scoped>
+.btn {
+  @apply p-5 bg-blue-500 rounded mr-2 hover:bg-blue-700
+}
+</style>
