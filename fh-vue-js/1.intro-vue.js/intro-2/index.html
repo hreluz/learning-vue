@@ -13,6 +13,7 @@
             type="text"
             placeholder="Add Quote"
             @keypress.enter="addQuote"
+            v-model="message"
             >
 
        <button v-on:click="toggleAuthor">Toggle Author</button>

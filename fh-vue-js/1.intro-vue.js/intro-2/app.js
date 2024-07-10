@@ -13,12 +13,14 @@ const app = createApp({
     setup() {
         const showAuthor = ref(false)
         const quotes = ref(originalQuotes)
+        const message = ref("")
         const totalQuotes = computed(() => {
             return quotes.value.length
         })
 
         const addQuote = () => {
-            quotes.value.unshift({quote:"Hello", author: "World"})
+            quotes.value.unshift({quote: message.value , author: "World"})
+            message.value = ""
         }
 
         return {
@@ -26,7 +28,8 @@ const app = createApp({
             showAuthor,
             toggleAuthor: () => showAuthor.value = !showAuthor.value,
             addQuote,
-            totalQuotes
+            totalQuotes,
+            message
         }
     }
 });
