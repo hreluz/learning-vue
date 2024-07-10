@@ -1,0 +1,8 @@
+Create project
+    npm create vue@latest
+
+    Conf:
+        project-name
+        typescript
+        eslint
+        prettier
