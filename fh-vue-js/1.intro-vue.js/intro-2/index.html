@@ -7,7 +7,14 @@
 </head>
 <body>
     <div id="myApp">
-       <h1>Batman Quotes</h1>
+       <h1>Batman Quotes {{ totalQuotes }} </h1>
+
+        <input 
+            type="text"
+            placeholder="Add Quote"
+            @keypress.enter="addQuote"
+            >
+
        <button v-on:click="toggleAuthor">Toggle Author</button>
        <hr>
 
