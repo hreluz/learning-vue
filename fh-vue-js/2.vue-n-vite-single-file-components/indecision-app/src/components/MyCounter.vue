@@ -1,3 +1,4 @@
+import { useCounter } from '../composables/useCounter';
 <template>
   <section>
     <h3>Counter: {{ counter }}</h3>
@@ -11,20 +12,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
-
+import { useCounter } from '../composables/useCounter';
 interface Props {
   value: number;
 }
 
 const props = defineProps<Props>();
-
-const counter = ref(props.value);
-const squareCounter = computed(() => counter.value * counter.value)
-
-const add = (n: number) => {
-  counter.value += n
-}
+const { counter, squareCounter, add } = useCounter(props.value)
 </script>
 
 <style scoped>
