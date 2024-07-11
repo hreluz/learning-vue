@@ -1,6 +1,4 @@
-import { expect, test } from 'vitest';
 import { addArray, sum } from '../../src/helpers/sum';
-import { describe } from 'node:test';
 
 describe('add function', () => {
   test('adds 1 + 2 to equal 3', () => {
