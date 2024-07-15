@@ -52,4 +52,28 @@ describe('useChat', () => {
       message: text,
     });
   });
+
+  test('mock response - fetch api', async () => {
+    const mockResponse = { answer: 'yes', image: 'example.gif' };
+
+    (window as any).fetch = vi.fn(async () => ({
+      json: async () => mockResponse,
+    }));
+
+    const text = 'You want coffee?';
+    const { messages, onMessage } = useChat();
+
+    await onMessage(text);
+
+    await new Promise((r) => setTimeout(r, 1600));
+
+    const [_, herMessage] = messages.value;
+
+    expect(herMessage).toEqual({
+      id: expect.any(Number),
+      image: mockResponse.image,
+      message: mockResponse.answer,
+      itsMine: false,
+    });
+  });
 });
