@@ -1,5 +1,5 @@
 export enum GameStatus {
   Playing = 'playing',
-  Won = 'wong',
+  Won = 'won',
   Lost = 'lost',
 }

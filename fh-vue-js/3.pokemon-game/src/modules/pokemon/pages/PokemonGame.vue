@@ -19,10 +19,10 @@ import { usePokemonGame } from '../composables/usePokemonGame';
 import { GameStatus } from '../interfaces';
 
 
-const { gameStatus, randomPokemon, isLoading, pokemonOptions } = usePokemonGame()
+const { gameStatus, randomPokemon, isLoading, pokemonOptions, checkAnswer } = usePokemonGame()
 
 const onSelectedOption = (value: number) => {
-  console.log(value);
+  checkAnswer(value)
 }
 
 </script>
