@@ -6,3 +6,13 @@ Create project
         typescript
         eslint
         prettier
+
+✔ Add TypeScript?  Yes
+✔ Add JSX Support? … No
+✔ Add Vue Router for Single Page Application development? … No 
+✔ Add Pinia for state management? … No
+✔ Add Vitest for Unit Testing? …  Yes
+✔ Add an End-to-End Testing Solution? › No
+✔ Add ESLint for code quality?  Yes
+✔ Add Prettier for code formatting? Yes
+✔ Add Vue DevTools 7 extension for debugging? (experimental) Yes

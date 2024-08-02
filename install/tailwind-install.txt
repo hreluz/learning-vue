@@ -1,0 +1,5 @@
+https://tailwindcss.com/
+
+
+Install tailwind
+    npm install -D tailwindcss postcss autoprefixer
