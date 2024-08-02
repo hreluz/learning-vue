@@ -8,9 +8,7 @@
   <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
     <h1 class="m-5">What pokemon is?</h1>
     <PokemonPicture :pokemon-id="randomPokemon.id" :show-pokemon="gameStatus != GameStatus.Playing" />
-    <PokemonOptions />
-
-
+    <PokemonOptions :options="pokemonOptions" @selected-option="onSelectedOption" />
   </section>
 </template>
 
@@ -21,6 +19,10 @@ import { usePokemonGame } from '../composables/usePokemonGame';
 import { GameStatus } from '../interfaces';
 
 
-const { gameStatus, randomPokemon, isLoading } = usePokemonGame()
+const { gameStatus, randomPokemon, isLoading, pokemonOptions } = usePokemonGame()
+
+const onSelectedOption = (value: number) => {
+  console.log(value);
+}
 
 </script>
