@@ -4,7 +4,7 @@
     <h3 class="animate-pulse">Loading pokemons ...</h3>
   </section>
 
-  <section class="flex flex-col justify-center items-center w-screen h-screen">
+  <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
     <h1 class="m-5">What pokemon is?</h1>
     <PokemonPicture />
     <PokemonOptions />
