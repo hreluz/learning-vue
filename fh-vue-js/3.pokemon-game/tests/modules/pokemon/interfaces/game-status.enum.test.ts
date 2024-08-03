@@ -6,10 +6,10 @@ describe('GameStatus enum', () => {
   });
 
   test('should have a value of "won"', () => {
-    expect(GameStatus.Playing).toBe('won');
+    expect(GameStatus.Won).toBe('won');
   });
 
   test('should have a value of "lost"', () => {
-    expect(GameStatus.Playing).toBe('lost');
+    expect(GameStatus.Lost).toBe('lost');
   });
 });
