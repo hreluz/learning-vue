@@ -14,7 +14,7 @@ mockPokemonAPi.onGet('/?limit=151').reply(200, {
 
 describe('usePokemon', () => {
   test('should initialize with the correct default values', async () => {
-    const [results, app] = withSetup(usePokemonGame);
+    const [results] = withSetup(usePokemonGame);
 
     expect(results.gameStatus.value).toBe(GameStatus.Playing);
     expect(results.isLoading.value).toBe(true);
@@ -28,6 +28,33 @@ describe('usePokemon', () => {
     expect(results.randomPokemon.value).toEqual({
       id: expect.any(Number),
       name: expect.any(String),
+    });
+  });
+
+  test('should correctly handle getNextRound', async () => {
+    const [results] = withSetup(usePokemonGame);
+    await flushPromises();
+
+    results.gameStatus.value = GameStatus.Won;
+
+    results.getNextRound(5);
+
+    expect(results.gameStatus.value).toBe(GameStatus.Playing);
+    expect(results.pokemonOptions.value).toHaveLength(5);
+  });
+
+  test('should correctly handle getNextRound and return different pokemons', async () => {
+    const [results] = withSetup(usePokemonGame);
+    await flushPromises();
+
+    const pokemonsBefore = [...results.pokemonOptions.value].map((p) => p.name);
+
+    results.getNextRound();
+
+    const pokemonsAfter = [...results.pokemonOptions.value].map((p) => p.name);
+
+    pokemonsAfter.forEach((p) => {
+      expect(pokemonsBefore).not.toContain(p.name);
     });
   });
 });
