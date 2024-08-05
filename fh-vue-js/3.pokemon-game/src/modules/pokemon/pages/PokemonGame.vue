@@ -6,8 +6,8 @@
   </section>
 
   <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
-    <button v-show="gameStatus == GameStatus.Lost || gameStatus == GameStatus.Won" class="button bg-green-400"
-      @click="onNextRound">
+    <button data-test-id="btn-new-game" v-show="gameStatus == GameStatus.Lost || gameStatus == GameStatus.Won"
+      class="button bg-green-400" @click="onNextRound()">
       New Game?</button>
     <h1 class="m-5">What pokemon is?</h1>
     <PokemonPicture :pokemon-id="randomPokemon.id" :show-pokemon="gameStatus != GameStatus.Playing" />
@@ -24,12 +24,25 @@ import { GameStatus } from '../interfaces';
 
 const { gameStatus, randomPokemon, isLoading, pokemonOptions, checkAnswer, getNextRound } = usePokemonGame()
 
+interface Props {
+  roundNumber?: number
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  roundNumber: 4
+});
+
+defineEmits<{
+  selectedOption: [id: number];
+}>();
+
+
 const onSelectedOption = (value: number) => {
   checkAnswer(value)
 }
 
 const onNextRound = () => {
-  getNextRound()
+  getNextRound(props.roundNumber)
 }
 
 </script>

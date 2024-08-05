@@ -7,6 +7,7 @@ describe('<PokemonPicture />', () => {
   test('should match snapshot', () => {
     const wrapper = mount(PokemonPicture, {
       props: {
+        pokemonId: 25,
         showPokemon: false,
       },
     });
@@ -37,6 +38,7 @@ describe('<PokemonPicture />', () => {
   test('should render the hidden image when showPokemon prop is false', () => {
     const wrapper = mount(PokemonPicture, {
       props: {
+        pokemonId: 25,
         showPokemon: false,
       },
     });
@@ -47,6 +49,7 @@ describe('<PokemonPicture />', () => {
   test('should render the hidden image when showPokemon prop is false', () => {
     const wrapper = mount(PokemonPicture, {
       props: {
+        pokemonId: 25,
         showPokemon: true,
       },
     });

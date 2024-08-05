@@ -74,4 +74,48 @@ describe('<PokemonGame />', () => {
       expect(pokemonNames).toContain(b.text());
     });
   });
+
+  test('should render button for a new game', () => {
+    (usePokemonGame as Mock).mockReturnValue({
+      randomPokemon: pokemonOptions.at(0),
+      isLoading: false,
+      gameStatus: GameStatus.Won,
+      pokemonOptions: pokemonOptions,
+      checkAnswer: vi.fn(),
+      getNextRound: vi.fn(),
+    });
+
+    const wrapper = mount(PokemonGame);
+
+    const button = wrapper.find('[data-test-id="btn-new-game"]');
+
+    expect(button.text()).toBe('New Game?');
+  });
+
+  test('should call the getNextRound function when the button is clicked', async () => {
+    const spyNextRoundFn = vi.fn();
+
+    (usePokemonGame as Mock).mockReturnValue({
+      randomPokemon: pokemonOptions.at(0),
+      isLoading: false,
+      gameStatus: GameStatus.Won,
+      pokemonOptions: pokemonOptions,
+      checkAnswer: vi.fn(),
+      getNextRound: spyNextRoundFn,
+    });
+
+    const wrapper = mount(PokemonGame, {
+      props: {
+        roundNumber: 5,
+      },
+    });
+
+    const button = wrapper.find('[data-test-id="btn-new-game"]');
+
+    await button.trigger('click');
+
+    expect(spyNextRoundFn).toHaveBeenCalled();
+
+    expect(spyNextRoundFn).toHaveBeenNthCalledWith(5);
+  });
 });
