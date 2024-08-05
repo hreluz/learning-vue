@@ -1,5 +1,5 @@
 <template>
-  <section v-if="isLoading || randomPokemon.id === null"
+  <section v-if="isLoading || randomPokemon?.id === null"
     class="flex flex-col justify-center items-center w-screen h-screen">
     <h1 class="text-3xl">Wait please ...</h1>
     <h3 class="animate-pulse">Loading pokemons ...</h3>
