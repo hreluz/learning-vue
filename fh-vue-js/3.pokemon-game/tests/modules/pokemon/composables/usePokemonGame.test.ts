@@ -57,4 +57,30 @@ describe('usePokemon', () => {
       expect(pokemonsBefore).not.toContain(p.name);
     });
   });
+
+  test('should correctly handle an incorrect answer', async () => {
+    const [results] = withSetup(usePokemonGame);
+    await flushPromises();
+
+    const { checkAnswer, gameStatus } = results;
+
+    expect(gameStatus.value).toBe(GameStatus.Playing);
+
+    checkAnswer(10000000);
+
+    expect(gameStatus.value).toBe(GameStatus.Lost);
+  });
+
+  test('should correctly handle a correct answer', async () => {
+    const [results] = withSetup(usePokemonGame);
+    await flushPromises();
+
+    const { checkAnswer, gameStatus, randomPokemon } = results;
+
+    expect(gameStatus.value).toBe(GameStatus.Playing);
+
+    await checkAnswer(randomPokemon.value.id as Number);
+
+    expect(gameStatus.value).toBe(GameStatus.Won);
+  });
 });

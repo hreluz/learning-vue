@@ -43,6 +43,7 @@ export const usePokemonGame = () => {
         spread: 150,
         origin: { y: 0.6 },
       });
+      return;
     }
 
     gameStatus.value = GameStatus.Lost;
