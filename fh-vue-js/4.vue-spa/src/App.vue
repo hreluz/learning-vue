@@ -8,16 +8,16 @@
         </a>
       </div>
       <nav class="ml-auto space-x-4 flex items-center h-10 sm:space-x-6">
-        <RouterLink to="/"> Home </RouterLink>
-        <RouterLink to="features"> Features </RouterLink>
-        <RouterLink to="pricing"> Pricing </RouterLink>
-        <RouterLink to="contact"> Contact </RouterLink>
+        <RouterLink :to="{ name: 'home' }"> Home </RouterLink>
+        <RouterLink :to="{ name: 'features' }"> Features </RouterLink>
+        <RouterLink :to="{ name: 'pricing' }"> Pricing </RouterLink>
+        <RouterLink :to="{ name: 'contact' }"> Contact </RouterLink>
       </nav>
     </header>
     <!-- Fin Header -->
 
     <!-- Main -->
-    <main class="flex-1 flex items-center justify-center py-6">
+    <main class="flex-1 flex items-center justify-center">
       <RouterView />
     </main>
     <!-- Fin Main -->
