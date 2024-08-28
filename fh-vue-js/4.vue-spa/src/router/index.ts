@@ -36,7 +36,20 @@ export const router = createRouter({
     {
       path: '/auth',
       name: 'auth',
-      component: () => import('@/modules/auth/pages/LoginPage.vue'),
+      redirect: { name: 'login' },
+      component: () => import('@/modules/auth/layouts/AuthLayout.vue'),
+      children: [
+        {
+          path: 'register',
+          name: 'register',
+          component: () => import('@/modules/auth/pages/RegisterPage.vue'),
+        },
+        {
+          path: 'login',
+          name: 'login',
+          component: () => import('@/modules/auth/pages/LoginPage.vue'),
+        },
+      ],
     },
   ],
 });
