@@ -1,0 +1,4 @@
+https://router.vuejs.org/
+https://router.vuejs.org/installation.html
+
+    npm install vue-router@4
