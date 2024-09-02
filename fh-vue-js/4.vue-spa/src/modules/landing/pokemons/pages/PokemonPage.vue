@@ -14,10 +14,8 @@
 
 <script lang="ts" setup>
 interface Props {
-  id: string
+  id: Number
 }
 
-
 const props = defineProps<Props>()
-console.log(props.id)
 </script>
