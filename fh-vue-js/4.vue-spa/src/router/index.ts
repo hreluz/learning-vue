@@ -31,6 +31,12 @@ export const router = createRouter({
           name: 'features',
           component: () => import('@/modules/landing/pages/FeaturesPage.vue'),
         },
+        {
+          path: '/pokemon/:id',
+          name: 'pokemon',
+          props: true,
+          component: () => import('@/modules/landing/pokemons/pages/PokemonPage.vue'),
+        },
       ],
     },
 

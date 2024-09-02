@@ -15,6 +15,7 @@
           <RouterLink :to="{ name: 'contact' }"> Contact </RouterLink>
         </div>
         <div class="space-x-4">
+          <RouterLink to="/pokemon/1"> Pokemon </RouterLink>
           <RouterLink :to="{ name: 'auth' }"> Login </RouterLink>
         </div>
       </nav>
