@@ -9,6 +9,7 @@
       </div>
       <nav class="flex flex-col ml-auto space-x-4 flex items-end h-10 sm:space-x-6">
         <div class="space-x-4">
+          <!-- exact-active-class="underline font-semibold" -->
           <RouterLink :to="{ name: 'home' }"> Home </RouterLink>
           <RouterLink :to="{ name: 'features' }"> Features </RouterLink>
           <RouterLink :to="{ name: 'pricing' }"> Pricing </RouterLink>
