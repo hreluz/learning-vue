@@ -12,15 +12,18 @@ import {
   onServerPrefetch,
   onUnmounted,
   onUpdated,
+  ref,
 } from 'vue';
 
 export default defineComponent({
   setup: () => {
+    console.log('setup');
+
+    const counter = ref(0);
+
     onMounted(() => {
       console.log('onMounted');
     });
-    console.log('setup');
-
     onUpdated(() => {
       console.log('onUpdated');
     });
@@ -54,5 +57,9 @@ export default defineComponent({
     onServerPrefetch(() => {
       console.log('onServerPrefetch');
     });
+
+    return {
+      counter,
+    };
   },
 });
