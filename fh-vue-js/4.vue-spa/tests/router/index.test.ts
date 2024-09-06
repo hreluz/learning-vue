@@ -1,6 +1,7 @@
 import App from '@/App.vue';
 import router from '@/router';
 import { mount } from '@vue/test-utils';
+import type { RouteLocationNormalized } from 'vue-router';
 
 describe('Router', () => {
   const wrapper = mount(App, {
@@ -40,5 +41,60 @@ describe('Router', () => {
     await router.replace('/');
     await router.push({ name: 'contact' });
     expect(wrapper.html()).toContain('Post-ironic');
+  });
+
+  test('renders LoginPage when visiting /pokemon/:id with no authentication', async () => {
+    localStorage.clear();
+    await router.replace('/pokemon/151');
+    await router.isReady();
+
+    expect(wrapper.find('h1').text()).toContain('Login');
+  });
+
+  test('renders PokemonPage when visiting /pokemon/:id with authentication', async () => {
+    localStorage.setItem('userId', 'DEF-454');
+
+    await router.replace('/pokemon/151');
+    await router.isReady();
+
+    expect(wrapper.find('h1').text()).toContain('Pokemon #151');
+    expect(wrapper.html()).toContain('151.svg');
+  });
+
+  test('should convert the segment into numbers', () => {
+    const route: RouteLocationNormalized = {
+      name: undefined,
+      params: { id: '2' },
+      matched: [],
+      fullPath: '/pokemon/2',
+      query: {},
+      hash: '',
+      redirectedFrom: undefined,
+      path: '',
+      meta: {},
+    };
+
+    const pokemonRoute = router.getRoutes().find((route) => route.name == 'pokemon');
+
+    const { id } = (pokemonRoute?.props as any).default(route);
+
+    expect(pokemonRoute).toBeTruthy();
+
+    expect(id).toBe(2);
+  });
+
+  test('should return default value if argument is not a number', () => {
+    const route: any = {
+      fullPath: '/pokemon/2',
+      params: { id: '2abc' },
+    };
+
+    const pokemonRoute = router.getRoutes().find((route) => route.name == 'pokemon');
+
+    const { id } = (pokemonRoute?.props as any).default(route);
+
+    expect(pokemonRoute).toBeTruthy();
+
+    expect(id).toBe(1);
   });
 });
