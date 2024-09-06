@@ -37,4 +37,20 @@ describe('is-authenticated-guard', () => {
 
     expect(lastPath).toBe(to.path);
   });
+
+  test('should block if not authentiacted with spies', async () => {
+    const setItemSpy = vi.spyOn(Storage.prototype, 'setItem');
+
+    await isAuthenticatedGuard(to, from, next);
+
+    expect(setItemSpy).toHaveBeenCalledWith('lastPath', to.path);
+  });
+
+  test('should pass if authenticated', async () => {
+    vi.spyOn(Storage.prototype, 'getItem').mockReturnValue('DEF-5567');
+
+    await isAuthenticatedGuard(to, from, next);
+
+    expect(next).toHaveBeenCalledWith();
+  });
 });
