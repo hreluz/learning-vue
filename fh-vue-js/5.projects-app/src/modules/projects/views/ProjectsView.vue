@@ -11,11 +11,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th>3</th>
-          <td>Brice Swyre</td>
-          <td>Tax Accountant</td>
-          <td>Red</td>
+        <tr v-for="(project, index) in projectsStore.projectsList" :key=project.id class="hover">
+          <th>{{ index + 1 }}</th>
+          <td>{{ project.name }}</td>
+          <td>{{ project.tasks.length }}</td>
+          <td>
+            <progress class="progress progress-primary w-56" value="10" max="100"></progress>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -63,6 +65,6 @@ const customModalOpen = ref(false)
 const projectsStore = useProjecstStore()
 
 const onNewValue = (projectName: string) => {
-  console.log({ projectName });
+  projectsStore.addProject(projectName)
 }
 </script>
