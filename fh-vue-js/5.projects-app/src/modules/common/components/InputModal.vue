@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 interface Props {
   open: boolean,
@@ -38,9 +38,15 @@ const emits = defineEmits<{
 
 const inputValue = ref('')
 
-const inputRef = ref<HTMLInputElement | null>(null)
+const inputRef = ref<HTMLInputElement | null>(null);
 
-defineProps<Props>()
+const props = defineProps<Props>()
+
+watch(props, ({ open }) => {
+  if (open) {
+    inputRef.value?.focus();
+  }
+})
 
 const submitValue = () => {
   console.log(inputValue.value);
