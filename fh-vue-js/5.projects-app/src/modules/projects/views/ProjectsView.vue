@@ -54,10 +54,13 @@ import AddCircle from '@/modules/common/components/icons/AddCircle.vue';
 import ModalIcon from '@/modules/common/components/icons/ModalIcon.vue';
 import InputModal from '@/modules/common/components/InputModal.vue';
 import { ref } from 'vue';
+import { useProjecstStore } from '../store/project.store';
 
 
 const modalOpen = ref(false)
 const customModalOpen = ref(false)
+
+const projectsStore = useProjecstStore()
 
 const onNewValue = (projectName: string) => {
   console.log({ projectName });
