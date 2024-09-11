@@ -21,8 +21,9 @@
     </table>
   </div>
 
-  <InputModal />
-  <FabButton @click="() => console.log('click')">
+  <InputModal :open="modalOpen" @close="modalOpen = false" @value="onNewValue($event)" title="New Project"
+    sub-title="Inser a unique name for your project" placeholder="Insert Project name" />
+  <FabButton @click="modalOpen = true">
     <AddCircle />
   </FabButton>
 </template>
@@ -31,5 +32,12 @@
 import FabButton from '@/modules/common/components/FabButton.vue';
 import AddCircle from '@/modules/common/components/icons/AddCircle.vue';
 import InputModal from '@/modules/common/components/InputModal.vue';
+import { ref } from 'vue';
 
+
+const modalOpen = ref(false)
+
+const onNewValue = (projectName: string) => {
+  console.log({ projectName });
+}
 </script>
