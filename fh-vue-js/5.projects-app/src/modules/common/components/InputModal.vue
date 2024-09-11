@@ -1,5 +1,5 @@
 <template>
-  <dialog id="my_modal_1" class="modal" :open="open">
+  <dialog class="modal" :open="open">
     <div class="modal-box">
       <h3 class="text-lg font-bold">{{ title }}</h3>
       <p class="py-4">{{ subTitle }}</p>
