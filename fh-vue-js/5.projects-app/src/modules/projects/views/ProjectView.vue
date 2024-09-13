@@ -17,12 +17,14 @@
           <tbody>
             <!-- row 1 -->
             <template v-if="project">
-              <tr v-for="(task, index) in project.tasks" :key="task.id">
-                <th>{{ index + 1 }}</th>
+              <tr v-for="(task) in project.tasks" :key="task.id">
+                <th>
+                  <input type="checkbox" :checked="!!task.completedAt" class="checkbox checkbox-primary"
+                    @change="projectStore.toggleTask(project.id, task.id)" />
+                </th>
                 <td>{{ task.name }}</td>
-                <td></td>
+                <td>{{ task.completedAt }}</td>
               </tr>
-
             </template>
             <tr>
               <th></th>
