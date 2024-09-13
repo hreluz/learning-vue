@@ -1,6 +1,8 @@
 <template>
   <aside class="bg-base-200 w-72 min-h-screen">
-    <h2 class="text-lg font-bold mx-4">Projects</h2>
+    <h2 class="text-lg font-bold mx-4">
+      <RouterLink to="/">Projects</RouterLink>
+    </h2>
     <p v-if="projectsStore.noProjects" class="text-sm text-gray-500 m-4">No projects</p>
 
     <ul class="menu rounded-box w-56">
@@ -11,7 +13,7 @@
             <ul>
               <li v-for="task in project.tasks" :key="task.id">
                 <RouterLink :to="`/project/${project.id}`">
-                  {{ project.name }}
+                  {{ task.name }}
                 </RouterLink>
               </li>
             </ul>
@@ -29,8 +31,6 @@
 </template>
 <script lang="ts" setup>
 import { useProjecstStore } from '../store/project.store';
-
-
 const projectsStore = useProjecstStore()
 
 </script>
