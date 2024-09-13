@@ -17,6 +17,15 @@ export const useProjecstStore = defineStore('projects', () => {
     });
   };
 
+  const addTaskToProject = (name: string, project: Project) => {
+    if (name.trim().length == 0) return;
+
+    project.tasks.push({
+      id: uuidv4(),
+      name: name,
+    });
+  };
+
   return {
     //Properties
     projects,
@@ -27,5 +36,6 @@ export const useProjecstStore = defineStore('projects', () => {
 
     //Actions
     addProject,
+    addTaskToProject,
   };
 });
