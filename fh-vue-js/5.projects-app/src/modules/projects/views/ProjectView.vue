@@ -9,30 +9,27 @@
           <!-- head -->
           <thead>
             <tr>
-              <th class="w-14">Done</th>
+              <th class="w-14">ID</th>
               <th>Task</th>
               <th>Done at</th>
             </tr>
           </thead>
           <tbody>
             <!-- row 1 -->
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-            </tr>
-            <!-- row 2 -->
-            <tr class="hover">
-              <th>2</th>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-            </tr>
+            <template v-if="project">
+              <tr v-for="(task, index) in project.tasks" :key="task.id">
+                <th>{{ index + 1 }}</th>
+                <td>{{ task.name }}</td>
+                <td></td>
+              </tr>
+
+            </template>
             <tr>
               <th></th>
               <td>
                 <input type="text"
                   class="input input-primary w-full opacity-60 transition-all hover:opacity-100 focus:opacity-100"
-                  placeholder="New task">
+                  v-model="name" placeholder="New task" @keyup.enter="addTask">
               </td>
               <td></td>
             </tr>
@@ -65,9 +62,19 @@ const projectStore = useProjecstStore()
 
 const project = ref<Project | null>();
 
+const name = ref('')
+
+const addTask = () => {
+  if (!project.value) return;
+
+  projectStore.addTaskToProject(name.value, project.value)
+  name.value = ''
+}
+
 
 watch(() => props.id, () => {
   project.value = projectStore.projectsList.find(p => p.id == props.id);
+  name.value = '';
 
   if (!project.value) {
     router.replace('/')
