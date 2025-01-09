@@ -1,0 +1,38 @@
+On tsconfig.vitest.json
+-----------------------------
+add 
+
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "tests"],
+
+that comes from tsconfig.app.json
+
+On tsconfig.vitest.json
+---------------------------
+import { fileURLToPath } from 'node:url'
+import { mergeConfig, defineConfig, configDefaults } from 'vitest/config'
+import viteConfig from './vite.config'
+
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    test: {
+      environment: 'jsdom',
+      exclude: [...configDefaults.exclude, 'e2e/**'],
+      root: fileURLToPath(new URL('./', import.meta.url))
+    }
+  })
+)
+
+On vitest.config.ts
+--------------------------
+
+    test: {
+      globals: true,
+	}
+
+
+npm run test:unit
+
+
+
+
