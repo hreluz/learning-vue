@@ -54,7 +54,7 @@ describe('useProjectsStore', () => {
     });
     expect(project2).toEqual(fakeProjects.at(1));
 
-    expect(store.projects.length).toBe(3);
+    expect(store.projects.length).toBe(4);
   });
 
   test('add task to a project', () => {
@@ -98,5 +98,40 @@ describe('useProjectsStore', () => {
     });
 
     expect(task.completedAt).toBeInstanceOf(Date);
+  });
+
+  test('should return the projects with completion', () => {
+    const store = useProjecstStore();
+
+    store.$patch((state) => {
+      state.projects = fakeProjects;
+    });
+
+    expect(store.projectsWithCompletion).toEqual([
+      {
+        completion: 25,
+        id: '1',
+        name: 'Project 1',
+        taskCount: 4,
+      },
+      {
+        completion: 0,
+        id: '2',
+        name: 'Project 2',
+        taskCount: 0,
+      },
+      {
+        completion: 50,
+        id: '3',
+        name: 'Project 3',
+        taskCount: 2,
+      },
+      {
+        completion: 33,
+        id: '4',
+        name: 'Project 4',
+        taskCount: 3,
+      },
+    ]);
   });
 });
