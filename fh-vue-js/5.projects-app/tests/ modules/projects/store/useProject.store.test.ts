@@ -56,4 +56,47 @@ describe('useProjectsStore', () => {
 
     expect(store.projects.length).toBe(3);
   });
+
+  test('add task to a project', () => {
+    const store = useProjecstStore();
+
+    store.addProject('New Project');
+
+    const project = store.projects.at(0)!;
+
+    const taskName = 'New Task';
+
+    store.addTaskToProject(taskName, project);
+
+    expect(project.tasks.length).toBe(1);
+    expect(project.tasks.at(0)).toEqual({
+      id: expect.any(String),
+      name: taskName,
+      completedAt: undefined,
+    });
+  });
+
+  test('toggles a task', () => {
+    const store = useProjecstStore();
+
+    store.addProject('New Project');
+
+    const project = store.projects.at(0)!;
+
+    const taskName = 'New Task';
+
+    store.addTaskToProject(taskName, project);
+
+    const task = project.tasks.at(0)!;
+
+    store.toggleTask(project.id, task.id);
+
+    expect(task).toEqual({
+      id: expect.any(String),
+      name: taskName,
+      completedAt: expect.any(Date),
+    });
+
+    expect(task.completedAt).toBeInstanceOf(Date);
+  });
 });
