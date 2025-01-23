@@ -17,7 +17,7 @@
           <tbody>
             <!-- row 1 -->
             <template v-if="project">
-              <tr v-for="(task) in project.tasks" :key="task.id">
+              <tr v-for="(task) in project.tasks" :key="task.id" class="hover">
                 <th>
                   <input type="checkbox" :checked="!!task.completedAt" class="checkbox checkbox-primary"
                     @change="projectStore.toggleTask(project.id, task.id)" />
