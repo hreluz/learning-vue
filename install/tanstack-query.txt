@@ -1,0 +1,3 @@
+For vue
+-------------------------
+	https://tanstack.com/query/latest/docs/framework/vue/installation
